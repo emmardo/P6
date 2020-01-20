@@ -1,0 +1,12 @@
+body{
+    background-color: white;
+    font-family: sans-serif;
+    align-content: center;
+    max-height: 1122px;
+    overflow: scroll;
+}
+
+.main{
+    display: flex;
+    flex-flow: column nowrap;
+}
