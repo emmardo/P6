@@ -1,28 +1,22 @@
 package com.openclassrooms.P6;
 
-import com.mysql.jdbc.Connection;
+import com.openclassrooms.P6.Hibernate.UserPersister;
+import com.openclassrooms.P6.User.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.sql.DriverManager;
+import java.sql.SQLException;
 
 @SpringBootApplication
 public class P6Application {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 
-		try
-		{
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = null;
-			conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root", "Programartodo1!");
-			System.out.print("Database is connected !");
-			conn.close();
-		}
-		catch(Exception e)
-		{
-			System.out.print("Do not connect to DB - Error:"+e);
-		}
+		UserPersister userPersister = new UserPersister();
+
+		User user = userPersister.readUser(1);
+
+		System.out.println(user.getEmail());
 
 		SpringApplication.run(P6Application.class, args);
 	}
