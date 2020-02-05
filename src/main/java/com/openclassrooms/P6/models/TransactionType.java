@@ -1,4 +1,4 @@
-package com.openclassrooms.P6.TransactionType;
+package com.openclassrooms.P6.models;
 
 public class TransactionType {
 

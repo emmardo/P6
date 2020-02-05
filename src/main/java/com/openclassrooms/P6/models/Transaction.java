@@ -1,4 +1,4 @@
-package com.openclassrooms.P6.Transaction;
+package com.openclassrooms.P6.models;
 
 import java.sql.Timestamp;
 
