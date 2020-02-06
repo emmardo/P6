@@ -1,9 +1,22 @@
 package com.openclassrooms.P6.models;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+@Entity
+@Table(name="Account")
+@EntityListeners(AuditingEntityListener.class)
 public class Account {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int accountId;
+
     private int userId;
+
+    @NotBlank
     private float currentBalance;
 
 

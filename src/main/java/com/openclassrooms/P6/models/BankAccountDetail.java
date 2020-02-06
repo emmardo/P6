@@ -6,25 +6,25 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name="Connection")
+@Table(name="BankAccountDetail")
 @EntityListeners(AuditingEntityListener.class)
-public class Connection {
+public class BankAccountDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int connectionId;
+    private int bankAccountDetailsId;
 
     private int userId;
 
     @NotBlank
-    private String connectionEmail;
+    private String iban;
 
-    public int getConnectionId() {
-        return connectionId;
+    public int getBankAccountDetailsId() {
+        return bankAccountDetailsId;
     }
 
-    public void setConnectionId(int connectionId) {
-        this.connectionId = connectionId;
+    public void setBankAccountDetailsId(int bankAccountDetailsId) {
+        this.bankAccountDetailsId = bankAccountDetailsId;
     }
 
     public int getUserId() {
@@ -35,11 +35,11 @@ public class Connection {
         this.userId = userId;
     }
 
-    public String getConnectionEmail() {
-        return connectionEmail;
+    public String getIban() {
+        return iban;
     }
 
-    public void setConnectionEmail(String connectionEmail) {
-        this.connectionEmail = connectionEmail;
+    public void setIban(String iban) {
+        this.iban = iban;
     }
 }

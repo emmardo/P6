@@ -1,17 +1,37 @@
 package com.openclassrooms.P6.models;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 
+@Entity
+@Table(name="Transaction")
+@EntityListeners(AuditingEntityListener.class)
 public class Transaction {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int transactionId;
+
     private int accountId;
+
     private int userId;
+
     private int connectionId;
+
     private int transactionTypeId;
+
+    @NotBlank
     private Timestamp timestamp;
+
+    @NotBlank
     private float moneyAmountVariation;
+
+    @NotBlank
     private float balanceBeforeTransaction;
+
     private String description;
 
     public int getTransactionId() {
