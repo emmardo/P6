@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name="TransactionType")
+@Table(name="transaction_type")
 @EntityListeners(AuditingEntityListener.class)
 public class TransactionType {
 

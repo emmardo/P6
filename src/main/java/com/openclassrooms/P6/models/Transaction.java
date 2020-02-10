@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name="Transaction")
+@Table(name="transaction")
 @EntityListeners(AuditingEntityListener.class)
 public class Transaction {
 
@@ -15,13 +15,17 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int transactionId;
 
-    private int accountId;
+    @OneToOne
+    private Account accountId;
 
-    private int userId;
+    @OneToOne
+    private User userId;
 
-    private int connectionId;
+    @OneToOne
+    private Connection connectionId;
 
-    private int transactionTypeId;
+    @OneToOne
+    private TransactionType transactionTypeId;
 
     @NotBlank
     private Timestamp timestamp;
@@ -42,35 +46,35 @@ public class Transaction {
         this.transactionId = transactionId;
     }
 
-    public int getAccountId() {
+    public Account getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(int accountId) {
+    public void setAccountId(Account accountId) {
         this.accountId = accountId;
     }
 
-    public int getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 
-    public int getConnectionId() {
+    public Connection getConnectionId() {
         return connectionId;
     }
 
-    public void setConnectionId(int connectionId) {
+    public void setConnectionId(Connection connectionId) {
         this.connectionId = connectionId;
     }
 
-    public int getTransactionTypeId() {
+    public TransactionType getTransactionTypeId() {
         return transactionTypeId;
     }
 
-    public void setTransactionTypeId(int transactionTypeId) {
+    public void setTransactionTypeId(TransactionType transactionTypeId) {
         this.transactionTypeId = transactionTypeId;
     }
 

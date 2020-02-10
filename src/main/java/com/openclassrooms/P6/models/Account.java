@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name="Account")
+@Table(name="account")
 @EntityListeners(AuditingEntityListener.class)
 public class Account {
 
@@ -14,26 +14,33 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int accountId;
 
-    private int userId;
+    @OneToOne
+    private User userId;
 
     @NotBlank
     private float currentBalance;
 
+    public Account(float currentBalance) {
 
+        this.currentBalance = currentBalance;
+    }
+
+    public Account() {
+    }
 
     public int getAccountId() {
         return accountId;
     }
 
     public void setAccountId(int accountId) {
-        accountId = accountId;
+        this.accountId = accountId;
     }
 
-    public int getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 
@@ -42,6 +49,6 @@ public class Account {
     }
 
     public void setCurrentBalance(float currentBalance) {
-        currentBalance = currentBalance;
+        this.currentBalance = currentBalance;
     }
 }

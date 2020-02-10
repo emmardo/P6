@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
-@Table(name="User")
+@Table(name="user")
 @EntityListeners(AuditingEntityListener.class)
 public class User {
 
@@ -32,6 +32,15 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date updatedAt;
+
+    public User(String email, String password) {
+
+        this.email = email;
+        this.password = password;
+    }
+
+    public User() {
+    }
 
     public int getUserId() {
         return userId;

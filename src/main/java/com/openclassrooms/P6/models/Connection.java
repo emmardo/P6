@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name="Connection")
+@Table(name="connection")
 @EntityListeners(AuditingEntityListener.class)
 public class Connection {
 
@@ -14,10 +14,18 @@ public class Connection {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int connectionId;
 
-    private int userId;
+    @OneToOne
+    private User userId;
 
     @NotBlank
     private String connectionEmail;
+
+    public Connection(String connectionEmail) {
+        this.connectionEmail = connectionEmail;
+    }
+
+    public Connection() {
+    }
 
     public int getConnectionId() {
         return connectionId;
@@ -27,11 +35,11 @@ public class Connection {
         this.connectionId = connectionId;
     }
 
-    public int getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 
