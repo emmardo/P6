@@ -23,4 +23,12 @@ public class TransactionType {
         CashOut,
         Refund
     }
+
+    public int getTransactionTypeId() {
+        return transactionTypeId;
+    }
+
+    public void setTransactionTypeId(int transactionTypeId) {
+        this.transactionTypeId = transactionTypeId;
+    }
 }

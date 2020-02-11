@@ -14,7 +14,8 @@ public class Connection {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int connectionId;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userId", referencedColumnName = "userId")
     private User userId;
 
     @NotBlank
