@@ -21,8 +21,9 @@ public class Account {
     @NotBlank
     private float currentBalance;
 
-    public Account(float currentBalance) {
+    public Account(User userId, float currentBalance) {
 
+        this.userId = userId;
         this.currentBalance = currentBalance;
     }
 

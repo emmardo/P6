@@ -3,6 +3,7 @@ package com.openclassrooms.P6.models;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -19,9 +20,12 @@ public class Connection {
     private User userId;
 
     @NotBlank
+    @Email
     private String connectionEmail;
 
-    public Connection(String connectionEmail) {
+    public Connection(User userId, String connectionEmail) {
+
+        this.userId = userId;
         this.connectionEmail = connectionEmail;
     }
 

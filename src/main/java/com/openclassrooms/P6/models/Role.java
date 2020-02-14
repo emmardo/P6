@@ -10,15 +10,41 @@ import javax.validation.constraints.NotBlank;
 @EntityListeners(AuditingEntityListener.class)
 public class Role {
 
+    //Change roleId to not AUTO generated?
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int roleId;
 
-    @NotBlank
-    private enum role {
+    @OneToOne(mappedBy = "User")
+    private User user;
 
-        ADMIN,
-        USER
+    @NotBlank
+    public enum Roles {
+
+        Admin(1),
+        User(2);
+
+        private int role;
+
+        Roles(int role) {
+            this.role = role;
+        }
+
+        int getRole() {
+
+            return role;
+        }
+    }
+
+    private Roles roles;
+
+    public Role() {
+    }
+
+    public Role(int roleId, Roles roles) {
+
+        this.roleId = roleId;
+        this.roles = roles;
     }
 
     public int getRoleId() {
@@ -36,7 +62,4 @@ public class Role {
     public void setUser(User user) {
         this.user = user;
     }
-
-    @OneToOne(mappedBy = "User")
-    private User user;
 }

@@ -42,6 +42,20 @@ public class Transaction {
 
     private String description;
 
+    public Transaction() {
+    }
+
+    public Transaction(Account accountId, User userId, Connection connectionId, TransactionType transactionTypeId, float moneyAmountVariation, float balanceBeforeTransaction, String description) {
+
+        this.accountId = accountId;
+        this.userId = userId;
+        this.connectionId = connectionId;
+        this.transactionTypeId = transactionTypeId;
+        this.moneyAmountVariation = moneyAmountVariation;
+        this.balanceBeforeTransaction = balanceBeforeTransaction;
+        this.description = description;
+    }
+
     public int getTransactionId() {
         return transactionId;
     }

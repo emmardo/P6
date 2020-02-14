@@ -21,6 +21,15 @@ public class BankAccountDetail {
     @NotBlank
     private String iban;
 
+    public BankAccountDetail() {
+    }
+
+    public BankAccountDetail(User userId, String iban) {
+
+        this.bankAccountDetailsId = bankAccountDetailsId;
+        this.iban = iban;
+    }
+
     public int getBankAccountDetailsId() {
         return bankAccountDetailsId;
     }
