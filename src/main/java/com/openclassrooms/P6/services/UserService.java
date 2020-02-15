@@ -4,6 +4,8 @@ import com.openclassrooms.P6.models.Account;
 import com.openclassrooms.P6.models.Connection;
 import com.openclassrooms.P6.models.Role;
 import com.openclassrooms.P6.models.User;
+import com.openclassrooms.P6.repositories.AccountRepository;
+import com.openclassrooms.P6.repositories.ConnectionRepository;
 import com.openclassrooms.P6.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,17 +20,29 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private AccountRepository accountRepository;
+
+    @Autowired
+    private ConnectionRepository connectionRepository;
+
+
     public void createAdminUser(String email, String password) {
 
-        Role.Roles userRole = Role.Roles.Admin;
+        if(userRepository.findByEmail(email) == null) {
 
-        Role role = new Role(1, userRole);
+            Role.Roles userRole = Role.Roles.Admin;
 
-        User user = new User(email, password, role);
+            Role role = new Role(1, userRole);
 
-        Date date = new Date();
+            User user = new User(email, password, role);
 
-        user.setCreatedAt(date);
+            Date date = new Date();
+
+            user.setCreatedAt(date);
+
+            userRepository.save(user);
+        }
     }
 
     public List<User> getAllAdminUsers() {
@@ -50,19 +64,28 @@ public class UserService {
 
     public void createRegularUser(String email, String password) {
 
-        Role.Roles userRole = Role.Roles.User;
+        if(userRepository.findByEmail(email) == null) {
 
-        Role role = new Role(2, userRole);
+            Role.Roles userRole = Role.Roles.User;
 
-        User user = new User(email, password, role);
+            Role role = new Role(2, userRole);
 
-        Date date = new Date();
+            User user = new User(email, password, role);
 
-        user.setCreatedAt(date);
+            Date date = new Date();
 
-        Account account = new Account(user, 0);
+            user.setCreatedAt(date);
 
-        Connection connection = new Connection(user, email);
+            Account account = new Account(user, 0);
+
+            Connection connection = new Connection(user, email);
+
+            userRepository.save(user);
+
+            accountRepository.save(account);
+
+            connectionRepository.save(connection);
+        }
     }
 
     public List<User> getAllRegularUsers() {
@@ -93,6 +116,9 @@ public class UserService {
 
             Date date = new Date();
             user.setUpdatedAt(date);
+
+            //Que hacer? save()?
+            userRepository.
         }
     }
 
@@ -105,12 +131,18 @@ public class UserService {
 
             Date date = new Date();
             user.setUpdatedAt(date);
+
+            //Que hacer? save()?
         }
     }
 
     public void deleteRegularUser(int id) {
 
         if(getUserById(id).getRoleId().getRoleId() == 2) {
+
+            accountRepository.deleteByUserId(getUserById(id));
+
+            connectionRepository.deleteByUserId(getUserById(id));
 
             userRepository.deleteById(id);
         }

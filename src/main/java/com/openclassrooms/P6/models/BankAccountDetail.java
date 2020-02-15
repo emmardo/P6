@@ -14,7 +14,7 @@ public class BankAccountDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bankAccountDetailsId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     private User userId;
 
